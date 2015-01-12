@@ -17,11 +17,4 @@ API::start($api_conf);
 
 
 echo "Android API V1.00";
-//print_r($_REQUEST);
-$data = file_get_contents('php://input');
-print "DATA: <pre>";
-var_dump($data);
-var_dump($_POST);
-print "</pre>";
-
 ?>
