@@ -4,10 +4,17 @@ class DB {
 	public static $mysqli;
 
 	public static function init() {
+		/*
 		$host = "localhost";
 		$user = "root";
 		$pass = "";
 		$db = "job_manager";
+		*/
+		$host = "f5vpn.impactfax.com";
+		$user = "acctmgmt";
+		$pass = "whatdoyouwant";
+		$db = "job_manager";
+
 		self::$mysqli = new mysqli($host,$user,$pass,$db);
 
 	}
