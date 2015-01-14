@@ -9,10 +9,15 @@ class DB {
 		$user = "root";
 		$pass = "";
 		$db = "job_manager";
-		*/
+		
 		$host = "f5vpn.impactfax.com";
 		$user = "acctmgmt";
 		$pass = "whatdoyouwant";
+		$db = "job_manager";
+*/
+		$host = "f5vpn.impactfax.com";
+		$user = "wolverineapi";
+		$pass = "trickledown";
 		$db = "job_manager";
 
 		self::$mysqli = new mysqli($host,$user,$pass,$db);
