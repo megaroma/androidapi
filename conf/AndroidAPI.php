@@ -1,7 +1,7 @@
 <?php
 return array(
 	'api_key' => '34ohioSSS90',
-	'actions' => 'test,login,status'
+	'actions' => 'test,login,status,get_all_sites'
 
 
 	);
