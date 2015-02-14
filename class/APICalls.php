@@ -51,4 +51,16 @@ class APICalls {
 			'message' => $message 
 			);
 	}
+
+	public static function apicallGet_all_sites() {
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+			$check['sites'] =  Site::all();
+			$check['total'] = count($check['sites']);
+			return $check;
+		} else {
+			return $check;
+		}
+		
+	}
 }
