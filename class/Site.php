@@ -11,6 +11,7 @@ class Site {
 				FROM 
 					site s
 				ORDER BY site_number ASC";
+				echo $sql;
 		$res = DB::select($sql);
 		print_r($res);
 		return $res;
