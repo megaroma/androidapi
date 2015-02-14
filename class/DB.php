@@ -39,7 +39,7 @@ class DB {
 			$result = $stmt->get_result();
 			$stmt->close();
 		} else {
-			$result = $mysqli->query($sql);
+			$result = self::$mysqli->query($sql);
 		}
 			if($result) {
     			while ($obj = $result->fetch_object()) {
