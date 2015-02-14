@@ -2,6 +2,7 @@
 
 class Site {
 	public static function all() {
+		echo "boo";
 		$sql = "SELECT
 					`s`.`id` as `id`,
 					`s`.`site_number` as `site_number`,
