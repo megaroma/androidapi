@@ -63,4 +63,26 @@ class APICalls {
 		}
 		
 	}
+
+	public static function apicallGet_near_sites() {
+		$lat = Input::get('lat','');
+		$long = Input::get('long','');
+		if((trim($lat) == '') || (trim($long) == '')) {
+			return array(
+				'status' => 3,
+				'message' => "Error" 
+			);	
+		}
+
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+			$check['sites'] =  Site::near($lat, $long);
+			$check['total'] = count($check['sites']);
+			return $check;
+		} else {
+			return $check;
+		}
+		
+	}
+
 }

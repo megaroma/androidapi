@@ -32,7 +32,7 @@ class Site {
 				FROM site s
 				HAVING distance<= 50
 				ORDER BY distance ASC";
-		$data = array($lat,$lat,$long);
+		$data = array(trim($lat),trim($lat),trim($long));
 		$res = DB::select($sql, $data);
 		return $res;		
 	}
