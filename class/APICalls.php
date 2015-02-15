@@ -78,6 +78,7 @@ class APICalls {
 		if($check['status'] == 1) {
 			$check['sites'] =  Site::near($lat, $long);
 			$check['total'] = count($check['sites']);
+			$check['debug'] = "Lat $lat, Long $long";
 			return $check;
 		} else {
 			return $check;
