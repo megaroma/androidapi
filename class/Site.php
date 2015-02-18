@@ -1,6 +1,23 @@
 <?php
 
 class Site {
+
+	public static function find($id) {
+		$sql = "SELECT
+					*
+				FROM 
+					site s
+				WHERE
+					`s`.`id` = ?
+				ORDER BY site_number ASC";
+		$res = DB::select($sql,array($id));
+		if(count($res) > 0) {
+			return $res[0];
+		} else {
+			return false;
+		}
+	}
+
 	public static function all() {
 
 		$sql = "SELECT

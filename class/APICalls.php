@@ -86,4 +86,23 @@ class APICalls {
 		
 	}
 
+	public static function apicallGet_site() {
+		$id = Input::get('site_id','');
+		if(trim($id) == '') {
+			return array(
+				'status' => 3,
+				'message' => "Error" 
+			);	
+		}
+
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+			$check['site'] =  Site::find($id);
+			return $check;
+		} else {
+			return $check;
+		}
+		
+	}
+
 }
