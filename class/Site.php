@@ -72,6 +72,7 @@ class Site {
 				);
 			foreach ($names as $name => $type) {
 				$vendors[$name]['interate'] = 'false';//-- 
+				$vendors[$name]['data'] = $site->$name;//---
 				if(($site->$name != '') && (ctype_digit($site->$name))) {
 					$vendors[$name]['interate'] = 'true';//-- 
 					$vendor = Vendor::find($site->$name);
