@@ -76,8 +76,10 @@ class Site {
 				if(($site->$name != '') && (ctype_digit(trim( $site->{$name} )))) {
 					$vendors[$name]['interate'] = 'true';//-- 
 					$vendor = Vendor::find($site->$name);
-					$vendor->type = $type;
-					$vendors[] = $vendor;
+					if($vendor) {
+						$vendor->type = $type;
+						$vendors[] = $vendor;
+					}
 				}
 			}
 			return $vendors;
