@@ -17,3 +17,6 @@ class Vendor {
 			return false;
 		}
 	}
+
+
+}
