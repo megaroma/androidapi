@@ -58,6 +58,7 @@ class Site {
 		$site = self::find($site_id);
 		if($site) {
 			$vendors = array();
+			$vendors['site'] = 'true';//--
 			$names = array(
 				'concrete_vendor_id' => 'Concrete Recycler',
 				'scrap_vendor_id' => 'Scrap Recycler',
@@ -70,7 +71,9 @@ class Site {
 				'radio_recycle_vendor_id' => 'Radio Recycle'								
 				);
 			foreach ($names as $name => $type) {
+				$vendors[$name]['interate'] = 'false';//-- 
 				if(($site->$name != '') && (ctype_digit($site->$name))) {
+					$vendors[$name]['interate'] = 'true';//-- 
 					$vendor = Vendor::find($site->$name);
 					$vendor->type = $type;
 					$vendors[] = $vendor;
