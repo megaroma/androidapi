@@ -53,4 +53,32 @@ class Site {
 		$res = DB::select($sql, $data);
 		return $res;		
 	}
+
+	public static function vendors($site_id) {
+		$site = self::find($site_id);
+		if($site) {
+			$vendors = array();
+			$names = array(
+				'concrete_vendor_id' => 'Concrete Recycler',
+				'scrap_vendor_id' => 'Scrap Recycler',
+				'contract_trucking_vendor_id' => 'Contract Trucking',
+				'fill_dirt_vendor_id' => 'Fill Dirt',
+				'land_fill_vendor_id' => 'Land Fill',
+				'quarry_vendor_id' => 'Quarry',
+				'contract_hauling_vendor_id' => 'Contract Hualing',
+				'dumpster_vendor_id' => 'Dumpster',
+				'radio_recycle_vendor_id' => 'Radio Recycle'								
+				);
+			foreach ($names as $name => $type) {
+				if(($site->$name != '') && (ctype_digit($site->$name))) {
+					$vendor = Vendor::find($site->$name);
+					$vendor->type = $type;
+					$vendors[] = $vendor;
+				}
+			}
+			return $vendors;
+		} else {
+			return false;
+		}
+	}
 }

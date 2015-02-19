@@ -105,4 +105,24 @@ class APICalls {
 		
 	}
 
+	public static function apicallGet_vendors() {
+		$id = Input::get('site_id','');
+		if(trim($id) == '') {
+			return array(
+				'status' => 3,
+				'message' => "Error" 
+			);	
+		}
+
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+			$check['vendors'] =  Site::vendors($id);
+			$check['vendors'] = count($check['vendors']);
+			return $check;
+		} else {
+			return $check;
+		}
+		
+	}
+
 }
