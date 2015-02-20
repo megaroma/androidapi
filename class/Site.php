@@ -54,8 +54,8 @@ class Site {
 		return $res;		
 	}
 
-	public static function vendors($site_id) {
-		$site = self::find($site_id);
+	public static function vendors($site) {
+		
 		if($site) {
 			$vendors = array();
 			$names = array(
