@@ -117,6 +117,7 @@ class APICalls {
 		$check = self::apicallStatus();
 		if($check['status'] == 1) {
 			$site = Site::find($id);
+			$check['site'] = $site;
 			$check['vendors'] =  Site::vendors($site);
 			$check['total'] = count($check['vendors']);
 			return $check;
