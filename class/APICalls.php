@@ -124,7 +124,29 @@ class APICalls {
 		} else {
 			return $check;
 		}
-		
 	}
+
+	public static function apicallSave_note() {
+		$id = Input::get('site_id','');
+		$username = Input::get('username','');
+		$note = Input::get('site_note','');
+
+		if((trim($id) == '') || (trim($note) == '')) {
+			return array(
+				'status' => 3,
+				'message' => "Error" 
+			);	
+		}
+
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+				Note::saveNote($id, $note, $username );
+			return $check;
+		} else {
+			return $check;
+		}
+	}
+
+
 
 }
