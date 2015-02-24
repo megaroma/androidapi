@@ -7,11 +7,23 @@ class API {
 		if(($api_key != '') && ($api_key == $conf['api_key']) && ($action != '') && (in_array($action, $actions))) {
 			$method = 'apicall'.ucfirst($action);
 			$res = APICalls::$method();
+			$res = self::utf8ize($res);
 			echo  json_encode ($res, JSON_UNESCAPED_UNICODE );
 			echo "<br><br>". json_last_error() ;
 			exit;
 		}
 	}
 
+
+public static function utf8ize($mixed) {
+    if (is_array($mixed)) {
+        foreach ($mixed as $key => $value) {
+            $mixed[$key] = utf8ize($value);
+        }
+    } else if (is_string ($mixed)) {
+        return utf8_encode($mixed);
+    }
+    return $mixed;
+}
 
 }
