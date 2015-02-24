@@ -6,7 +6,7 @@ class API {
 		$actions = explode(",", $conf['actions']);
 		if(($api_key != '') && ($api_key == $conf['api_key']) && ($action != '') && (in_array($action, $actions))) {
 			$method = 'apicall'.ucfirst($action);
-			$res = APICalls::$method();
+			$res = (array) APICalls::$method();
 			$res = self::utf8ize($res);
 			echo  json_encode ($res);
 			echo "<br><br>". json_last_error() ;
