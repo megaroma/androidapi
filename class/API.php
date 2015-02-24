@@ -20,7 +20,7 @@ public static function utf8ize($mixed) {
         foreach ($mixed as $key => $value) {
             $mixed[$key] = self::utf8ize($value);
         }
-    } else if (is_string ($mixed)) {
+    } else (is_string ($mixed)) {
         return iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($mixed));
     }
     return $mixed;
