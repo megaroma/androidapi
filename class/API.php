@@ -8,7 +8,7 @@ class API {
 			$method = 'apicall'.ucfirst($action);
 			$res = APICalls::$method();
 			$res = self::utf8ize($res);
-			echo  json_encode ($res, JSON_UNESCAPED_UNICODE );
+			echo  json_encode ($res);
 			echo "<br><br>". json_last_error() ;
 			exit;
 		}
@@ -21,7 +21,7 @@ public static function utf8ize($mixed) {
             $mixed[$key] = self::utf8ize($value);
         }
     } else if (is_string ($mixed)) {
-        return utf8_encode($mixed);
+        return mb_convert_encoding($mixed, "UTF-8", "auto");
     }
     return $mixed;
 }
