@@ -99,7 +99,7 @@ class APICalls {
 		if($check['status'] == 1) {
 			$check['site'] =  Site::find($id);
 			foreach($check['site'] as $k => $v) {
-				$check['site'][$k] = str_replace('"', '\"', $v);
+				$check['site'][$k] = str_replace(array("'", '"'), array("\'", '\"'), $v);
 			}
 			return $check;
 		} else {
