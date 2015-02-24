@@ -21,7 +21,7 @@ public static function utf8ize($mixed) {
             $mixed[$key] = self::utf8ize($value);
         }
     } else if (is_string ($mixed)) {
-        return mb_convert_encoding($mixed, "UTF-8", "auto");
+        return iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($mixed));
     }
     return $mixed;
 }
