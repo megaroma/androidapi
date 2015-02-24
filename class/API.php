@@ -18,6 +18,7 @@ class API {
 public static function utf8ize($mixed) {
 
         foreach ($mixed as $key => $value) {
+        	echo $key."<br>";
             $mixed->$key = iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($value));
         }
 
