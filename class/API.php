@@ -18,7 +18,7 @@ class API {
 public static function utf8ize($mixed) {
     if (is_object($mixed)) {
         foreach ($mixed as $key => $value) {
-            $mixed[$key] = self::utf8ize($value);
+            $mixed->$key = self::utf8ize($value);
         }
     } else {
         return iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($mixed));
