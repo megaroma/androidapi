@@ -6,7 +6,7 @@ class API {
 		$actions = explode(",", $conf['actions']);
 		if(($api_key != '') && ($api_key == $conf['api_key']) && ($action != '') && (in_array($action, $actions))) {
 			$method = 'apicall'.ucfirst($action);
-			$res = (array) APICalls::$method();
+			$res = APICalls::$method();
 			$res = self::utf8ize($res);
 			echo  json_encode ($res);
 			echo "<br><br>". json_last_error() ;
@@ -16,7 +16,7 @@ class API {
 
 
 public static function utf8ize($mixed) {
-    if (is_array($mixed)) {
+    if (is_object($mixed)) {
         foreach ($mixed as $key => $value) {
             $mixed[$key] = self::utf8ize($value);
         }
