@@ -72,6 +72,7 @@ class Site {
 			foreach ($names as $name => $type) {
 				if(($site->$name != '') && (ctype_digit(trim( $site->{$name} )))) {
 					$vendor = Vendor::find($site->$name);
+					API::utf8ize($vendor);
 					if($vendor) {
 						$vendor->type = $type;
 						$vendors[] = $vendor;

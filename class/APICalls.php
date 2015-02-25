@@ -101,6 +101,7 @@ class APICalls {
 			//foreach($check['site'] as $k => $v) {
 			//	$check['site'][$k] = str_replace(array("'", '"'), array("\'", '\"'), $v);
 			//}
+			API::utf8ize($check['site']);
 			return $check;
 		} else {
 			return $check;
