@@ -8,6 +8,7 @@ class API {
 			$method = 'apicall'.ucfirst($action);
 			$res = APICalls::$method();
 			self::utf8ize($res->site);
+			print_r($res);
 			echo  json_encode ($res);
 			echo "<br><br>". json_last_error() ;
 			exit;
