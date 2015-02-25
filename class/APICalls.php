@@ -122,6 +122,7 @@ class APICalls {
 		if($check['status'] == 1) {
 			$site = Site::find($id);
 			$check['site'] = $site;
+			API::utf8ize($check['site']);
 			$check['vendors'] =  Site::vendors($site);
 			$check['total'] = count($check['vendors']);
 			return $check;
