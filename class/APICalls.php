@@ -1,4 +1,4 @@
-<?php
+	<?php
 class APICalls {
 
 	public static function apicallTest() {
@@ -153,5 +153,26 @@ class APICalls {
 	}
 
 
+	public static function apicallSend_message() {
+		$username = Input::get('username','');
+		$message = Input::get('message','');
+
+		if((trim($username) == '') || (trim($message) == '')) {
+			return array(
+				'status' => 3,
+				'message' => "Error" 
+			);	
+		}
+
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+				$to = "darkromanovich@gmail.com";
+				$subject = "message from ".$username;
+				Mail::send($to, $subject, $message);
+			return $check;
+		} else {
+			return $check;
+		}
+	}
 
 }
