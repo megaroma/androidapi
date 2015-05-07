@@ -175,4 +175,12 @@ class APICalls {
 		}
 	}
 
+
+	public static function apicallSend_google_api() {
+			return array(
+				'status' => 1,
+				'message' => "Ok" 
+			);	
+	}
+
 }
