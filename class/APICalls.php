@@ -177,6 +177,14 @@ class APICalls {
 
 
 	public static function apicallSend_google_api() {
+			ob_start();
+			print_r($_POST);
+			echo "\n";
+			print_r($_FILES);
+			$text = ob_get_contents();
+			ob_end_clean();
+			file_put_contents('/tmp/test.txt', $text);
+
 			return array(
 				'status' => 1,
 				'message' => "Ok" 
