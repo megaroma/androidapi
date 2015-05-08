@@ -177,6 +177,7 @@ class APICalls {
 
 
 	public static function apicallSend_google_api() {
+		/*
 			ob_start();
 			print_r($_POST);
 			echo "\n";
@@ -187,6 +188,9 @@ class APICalls {
 			ob_end_clean();
 			file_put_contents('test.txt', $text);
 			move_uploaded_file($_FILES['file']['tmp_name'],"/var/www/html/beltonepublic/androidapi/".$_FILES['file']['name'] );
+	*/
+			$text = file_get_contents("php://input");
+			file_put_contents('test.txt', $text);
 
 			return array(
 				'status' => 1,
