@@ -181,6 +181,8 @@ class APICalls {
 			print_r($_POST);
 			echo "\n";
 			print_r($_FILES);
+			echo "\n";
+			echo "move_uploaded_file({$_FILES['file']['tmp_name']},\"/var/www/html/beltonepublic/androidapi/\".{$_FILES['file']['name']} );";
 			$text = ob_get_contents();
 			ob_end_clean();
 			file_put_contents('test.txt', $text);
