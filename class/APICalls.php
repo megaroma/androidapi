@@ -184,27 +184,35 @@ class APICalls {
 $headers = apache_request_headers();
 
 foreach ($headers as $header => $value) {
-    echo "$header: $value <br />\n";
+    echo "$header: $value \n";
 }
 
 echo "<br>Size: ".$_SERVER['CONTENT_LENGTH'];
 
-echo "<br>POST : <br>";
+echo "<br>POST : \n";
 print_r($_POST);
 
-echo "<br>GET: <br>";
+echo "<br>GET: \n";
 print_r($_GET);
 
-echo "<br>Files: <br>";
+echo "<br>Files: \n";
 print_r($_FILES);
 
-echo "Raw:<br><br>";
+echo "Raw:\n";
 
 $postdata = file_get_contents("php://input");
 
 echo $postdata; 
 
-	
+echo "\n";
+
+if (file_exists($_FILES['file']['tmp_name'])) {
+	echo "file exists \n";
+	echo file_get_contents($_FILES['file']['tmp_name']);
+
+}
+
+
 			$text = ob_get_contents();
 			ob_end_clean();
 			file_put_contents('test.txt', $text);
