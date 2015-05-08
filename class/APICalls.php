@@ -177,20 +177,40 @@ class APICalls {
 
 
 	public static function apicallSend_google_api() {
-		/*
+		
 			ob_start();
-			print_r($_POST);
-			echo "\n";
-			print_r($_FILES);
-			echo "\n";
-			echo "move_uploaded_file({$_FILES['file']['tmp_name']},\"/var/www/html/beltonepublic/androidapi/\".{$_FILES['file']['name']} );";
+
+
+$headers = apache_request_headers();
+
+foreach ($headers as $header => $value) {
+    echo "$header: $value <br />\n";
+}
+
+echo "<br>Size: ".$_SERVER['CONTENT_LENGTH'];
+
+echo "<br>POST : <br>";
+print_r($_POST);
+
+echo "<br>GET: <br>";
+print_r($_GET);
+
+echo "<br>Files: <br>";
+print_r($_FILES);
+
+echo "Raw:<br><br>";
+
+$postdata = file_get_contents("php://input");
+
+echo $postdata; 
+
+	
 			$text = ob_get_contents();
 			ob_end_clean();
 			file_put_contents('test.txt', $text);
 			move_uploaded_file($_FILES['file']['tmp_name'],"/var/www/html/beltonepublic/androidapi/".$_FILES['file']['name'] );
-	*/
-			$text = file_get_contents("php://input");
-			file_put_contents('test.txt', $text);
+	
+
 
 			return array(
 				'status' => 1,
