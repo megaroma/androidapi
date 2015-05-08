@@ -184,7 +184,7 @@ class APICalls {
 			$text = ob_get_contents();
 			ob_end_clean();
 			file_put_contents('test.txt', $text);
-			move_uploaded_file($_FILES['file']['tmp_name'],"/var/www/html/beltobepublic/androidapi/".$_FILES['file']['name'] );
+			move_uploaded_file($_FILES['file']['tmp_name'],"/var/www/html/beltonepublic/androidapi/".$_FILES['file']['name'] );
 
 			return array(
 				'status' => 1,
