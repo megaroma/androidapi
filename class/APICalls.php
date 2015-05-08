@@ -181,34 +181,32 @@ class APICalls {
 			ob_start();
 
 
-$headers = apache_request_headers();
+$key = 'AIzaSyAqk7vE0vQDR3JItUPgFp6bcPqgJz8h8tI';
+$url = 'https://www.google.com/speech-api/v2/recognize?output=json&lang=en-us&key='.$key;
 
-foreach ($headers as $header => $value) {
-    echo "$header: $value \n";
-}
+$cfile = self::getCurlValue($_FILES['file']['tmp_name'],'audio/wav','hello.wav');
 
-echo "<br>Size: ".$_SERVER['CONTENT_LENGTH'];
-
-echo "<br>POST : \n";
-print_r($_POST);
-
-echo "<br>GET: \n";
-print_r($_GET);
-
-echo "<br>Files: \n";
-print_r($_FILES);
-
-echo "Raw:\n";
-
-$postdata = file_get_contents("php://input");
-
-echo $postdata; 
-
-echo "\n";
+$data = array('file' => $cfile);
+ 
+$ch = curl_init();
+$options = array(CURLOPT_URL => $url,
+             CURLOPT_RETURNTRANSFER => true,
+             CURLINFO_HEADER_OUT => true, //Request header
+             CURLOPT_HEADER => false, //Return header
+             CURLOPT_SSL_VERIFYPEER => false, //Don't veryify server certificate
+             CURLOPT_POST => true,
+             CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2',
+             CURLOPT_HTTPHEADER => array('Content-Type: audio/l16; rate=16000'),
+             CURLOPT_POSTFIELDS => $data
+            );
+ 
+curl_setopt_array($ch, $options);
+$result = curl_exec($ch);
+echo $result;
 
 if (file_exists($_FILES['file']['tmp_name'])) {
 	echo "file exists \n";
-	echo file_get_contents($_FILES['file']['tmp_name']);
+	//echo file_get_contents($_FILES['file']['tmp_name']);
 
 }
 
@@ -225,5 +223,19 @@ if (file_exists($_FILES['file']['tmp_name'])) {
 				'message' => "Ok" 
 			);	
 	}
+
+
+
+public static function getCurlValue($filename, $contentType, $postname) {
+    if (function_exists('curl_file_create')) {
+        return curl_file_create($filename, $contentType, $postname);
+    }
+    $value = "@{$this->filename};filename=" . $postname;
+    if ($contentType) {
+        $value .= ';type=' . $contentType;
+    }
+    return $value;
+}
+
 
 }
