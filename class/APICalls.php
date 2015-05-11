@@ -189,7 +189,7 @@ class APICalls {
 		if($check['status'] == 1) {
 			$result = GoogleAPI::send_file($_FILES['file']['tmp_name'],$_FILES['file']['name']);
 			if($result) {
-			 $check['text'] = $arr->result[0]->alternative[0]->transcript;
+			 $check['text'] = " ".$result->result[0]->alternative[0]->transcript;
 			 return $check;
 			} else {
 				return array(
