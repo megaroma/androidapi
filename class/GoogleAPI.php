@@ -2,11 +2,11 @@
 class GoogleAPI {
 
 public static function get_key() {
-	return API::conf['google_api_keys'][0];
+	return API::$conf['google_api_keys'][0];
 }
 
 public static function send_file($tmp_name, $name) {
-	$url = API::conf['google_api_url']."?output=json&lang=en-us&key=".self::get_key();
+	$url = API::$conf['google_api_url']."?output=json&lang=en-us&key=".self::get_key();
 	$cfile = self::getCurlValue($tmp_name,'audio/wav',$name);
 	$data = array('file' => $cfile);
 	$ch = curl_init();
