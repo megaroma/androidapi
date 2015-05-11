@@ -1,6 +1,9 @@
 <?php
 class API {
+	public static $conf = array();
+
 	public static function start($conf) {
+		self::$conf = $conf;
 		$api_key = Input::get('api_key','');
 		$action = Input::get('api_action','');
 		$actions = explode(",", $conf['actions']);

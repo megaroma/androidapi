@@ -178,51 +178,32 @@ class APICalls {
 
 	public static function apicallSend_google_api() {
 		
-			ob_start();
-
-
-$key = 'AIzaSyAqk7vE0vQDR3JItUPgFp6bcPqgJz8h8tI';
-$url = 'https://www.google.com/speech-api/v2/recognize?output=json&lang=en-us&key='.$key;
-
-$cfile = self::getCurlValue($_FILES['file']['tmp_name'],'audio/wav','hello.wav');
-
-$data = array('file' => $cfile);
- 
-$ch = curl_init();
-$options = array(CURLOPT_URL => $url,
-             CURLOPT_RETURNTRANSFER => true,
-             CURLINFO_HEADER_OUT => true, //Request header
-             CURLOPT_HEADER => false, //Return header
-             CURLOPT_SSL_VERIFYPEER => false, //Don't veryify server certificate
-             CURLOPT_POST => true,
-             CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2',
-             CURLOPT_HTTPHEADER => array('Content-Type: audio/l16; rate=16000'),
-             CURLOPT_POSTFIELDS => $data
-            );
- 
-curl_setopt_array($ch, $options);
-$result = curl_exec($ch);
-echo $result;
-
-if (file_exists($_FILES['file']['tmp_name'])) {
-	echo "file exists \n";
-	//echo file_get_contents($_FILES['file']['tmp_name']);
-
-}
-
-
-			$text = ob_get_contents();
-			ob_end_clean();
-			file_put_contents('test.txt', $text);
-			move_uploaded_file($_FILES['file']['tmp_name'],"/var/www/html/beltonepublic/androidapi/".$_FILES['file']['name'] );
-	
-
-
+		if(!isset($_FILES['file'])) {
 			return array(
-				'status' => 1,
-				'message' => "Ok" 
-			);	
+				'status' => 3,
+				'message' => "Error" 
+			);				
+		}
+
+		$check = self::apicallStatus();
+		if($check['status'] == 1) {
+			$result = GoogleAPI::send_file($_FILES['file']['tmp_name'],$_FILES['file']['name']);
+			if($result) {
+			 $check['text'] = $arr->result[0]->alternative[0]->transcript;
+			 return $check;
+			} else {
+				return array(
+					'status' => 3,
+					'message' => "Error" 
+				);		
+			}
+
+			return $check;
+		} else {
+			return $check;
+		}
 	}
+
 
 
 
