@@ -166,8 +166,8 @@ class APICalls {
 
 		$check = self::apicallStatus();
 		if($check['status'] == 1) {
-				//$to = "genmarieb@gmail.com";
-				$to = "darkromanovich@gmail.com";
+				$to = "genmarieb@gmail.com";
+				//$to = "darkromanovich@gmail.com";
 				$subject = "message from ".$username;
 				Mail::send($to, $subject, $message);
 			return $check;
